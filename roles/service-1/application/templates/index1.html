@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prize Generate</title>
+</head>
+<body style="background-color:black;color:white">
+    <h1>Username: {{ username }}</h1>
+    {% if prize %}
+    <h1>Prize: {{ prize }}</h1>
+    <form action='{{ url_for('index') }}' method='POST'>
+        <button type="submit">New Username</button>
+    </form>
+    {% else %}
+    <br>
+    <br>
+    <br>
+    <form action='{{ url_for('prize', username=username) }}' method='POST'>
+        <button type="submit">Generate Prize</button>
+    </form>
+    {% endif %}
+</body>
+</html>
