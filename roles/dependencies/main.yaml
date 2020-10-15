@@ -1,13 +1,11 @@
-- name: 'install python and pip'
+- name: 'install python'
   apt:
-    pkg:
-      - python3
-      - pip
+    name: python-pip
     state: latest
     update_cache: true
 - name: 'install dependencies from .txt file'
   pip:
-    requirements: ./requirements.txt
+    requirements: /home/student/nbs-mentored-project/roles/dependencies/requirements.txt
 - name: 'install docker dependencies'
   apt:
     pkg:
