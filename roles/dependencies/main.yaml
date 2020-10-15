@@ -1,0 +1,39 @@
+- name: 'install python and pip'
+  apt:
+    pkg:
+      - python3
+      - pip
+    state: latest
+    update_cache: true
+- name: 'install dependencies from .txt file'
+  pip:
+    requirements: ./requirements.txt
+- name: 'install docker dependencies'
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    state: latest
+    update_cache: true
+- name: 'get docker key'
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+- name: 'add to repo'
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+- name: 'update apt and install docker-ce'
+  apt:
+    update_cache: true
+    name: docker-ce
+    state: latest
+- name: 'install docker with pip'
+  pip:
+    name: docker
+- name: 'start docker service'
+  service:
+    name: docker
+    state: started
