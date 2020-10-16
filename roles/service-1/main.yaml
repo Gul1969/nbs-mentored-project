@@ -1,0 +1,4 @@
+- name: 'build docker image'
+  docker_image:
+    path: /home/student/nbs-mentored-challenge/roles/service-1
+    tag: ${BUILD_NUMBER}
