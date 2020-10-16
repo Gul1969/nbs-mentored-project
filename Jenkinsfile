@@ -5,6 +5,7 @@ pipeline {
 			steps{
 				sh "./scripts/dependencies.sh"
 			}
+		}
 		stage('run service playbook roles'){
 			steps{
 				sh "./scripts/playbook.sh"
