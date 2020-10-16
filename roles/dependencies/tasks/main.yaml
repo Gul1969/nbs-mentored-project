@@ -5,7 +5,7 @@
     update_cache: true
 - name: 'install dependencies from .txt file'
   pip:
-    requirements: /home/student/nbs-mentored-project/roles/dependencies/requirements.txt
+    requirements: /home/student/nbs-mentored-project/roles/dependencies/meta/requirements.txt
 - name: 'install docker dependencies'
   apt:
     pkg:

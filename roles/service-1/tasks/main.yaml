@@ -1,0 +1,7 @@
+- name: 'build docker image'
+  docker_image:
+    name: service-1
+    build_path: /home/student/nbs-mentored-project/roles/service-1/files/
+    state: present
+    tag: latest
+    
