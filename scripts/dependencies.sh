@@ -1,5 +1,5 @@
 #! /bin/bash
 
 cd ..
-cd dependencies
+cd ./dependencies
 ansible-playbook playbook.yaml
