@@ -3,7 +3,7 @@ pipeline {
         stages {
 		stage('install dependencies'){
 			steps{
-				sh "./scripts/dependencies.sh"
+				sh "./dependencies/dependencies.sh"
 			}
 		}
 		stage('run service playbook roles'){
