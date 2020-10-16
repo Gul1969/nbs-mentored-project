@@ -3,3 +3,4 @@
   become: true
   roles:
     - dependencies
+    - service-1  
