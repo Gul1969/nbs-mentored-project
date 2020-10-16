@@ -1,26 +1,13 @@
 pipeline {
 	agent any
         stages {
-		stage('test service-1){
-		}
-		stage('build image'){
+		stage('install dependencies'){
 			steps{
-				sh "./scripts/build.sh"
+				sh "./scripts/dependencies.sh"
 			}
-		}
-		stage('push to nexus'){
+		stage('run service playbook roles'){
 			steps{
-				sh "./scripts/push.sh"
-			}
-		}
-		stage('pull latest image from nexus'){
-			steps{
-				sh "./scripts/pull.sh"
-			}
-		}
-		stage('add service-1 to network and run in container')
-			steps{
-				sh "./scripts/run.sh"
+				sh "./scripts/playbook.sh"
 			}
 		}
 	}

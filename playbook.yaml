@@ -2,5 +2,6 @@
   connection: local
   become: true
   roles:
-    - dependencies
-    - service-1  
+    - service-1
+    - service-2  
+    - nginx  

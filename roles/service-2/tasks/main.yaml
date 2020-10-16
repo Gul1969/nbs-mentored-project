@@ -1,0 +1,20 @@
+- name: 'build docker image'
+  docker_image:
+    name: service-2
+    build_path: /home/student/nbs-mentored-project/roles/service-2/files/
+    state: present
+    tag: latest
+- name: 'tag image and push to nexus (with cleanup)'
+  script: /home/student/nbs-mentored-project/roles/service-2/files/scripts/push.sh
+- name: 'pull latest image from nexus'
+  script: /home/student/nbs-mentored-project/roles/service-2/files/scripts/pull.sh
+- name: 'run service-2 in container'
+  docker_container:
+    name: service-2
+    image: service-2:latest
+    ports:
+      - 5001:5000
+    networks:
+      - name: challenge-network
+    state: started
+    

@@ -4,4 +4,17 @@
     build_path: /home/student/nbs-mentored-project/roles/service-1/files/
     state: present
     tag: latest
+- name: 'tag image and push to nexus (with cleanup)'
+  script: /home/student/nbs-mentored-project/roles/service-1/files/scripts/push.sh
+- name: 'pull latest image from nexus'
+  script: /home/student/nbs-mentored-project/roles/service-1/files/scripts/pull.sh
+- name: 'run service-1 in container'
+  docker_container:
+    name: service-1
+    image: service-1:latest
+    ports:
+      - 5000:5000
+    networks:
+      - name: challenge-network
+    state: started
     
