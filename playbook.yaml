@@ -1,6 +1,8 @@
 - hosts: 127.0.0.1
   connection: local
   become: true
+  vars:
+    service_2: ./roles/service-2/files/scripts/push.sh
   roles:
     - nginx
     - service-1
