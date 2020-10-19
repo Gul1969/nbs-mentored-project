@@ -6,8 +6,6 @@
     tag: latest
 - name: 'tag image and push to nexus (with cleanup)'
   script: /home/student/nbs-mentored-project/roles/service-2/files/scripts/push.sh
-- name: 'pull latest image from nexus'
-  script: /home/student/nbs-mentored-project/roles/service-2/files/scripts/pull.sh
 - name: 'run service-2 in container'
   docker_container:
     name: service-2
