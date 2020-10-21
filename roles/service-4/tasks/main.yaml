@@ -5,7 +5,8 @@
     state: present
     tag: latest
 - name: 'tag image and push to nexus (with cleanup)'
-  script: /home/student/nbs-mentored-project/roles/service-4/files/scripts/push.sh
+  become_user: root
+  command: /home/student/nbs-mentored-project/roles/service-4/files/push.sh
 - name: 'run service-4 in container'
   docker_container:
     name: service-4
