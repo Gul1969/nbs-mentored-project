@@ -3,7 +3,17 @@ pipeline {
         stages {
 		stage('install dependencies'){
 			steps{
-				sh "./dependencies/dependencies.sh"
+				sh "./scripts/dependencies.sh"
+			}
+		}
+		stage('install docker'){
+			steps{
+				sh "./docker/docker.sh"
+			}
+		}
+		stage('run nexus in container'){
+			steps{
+				sh "./scripts/nexus.sh"
 			}
 		}
 		stage('run service playbook roles'){

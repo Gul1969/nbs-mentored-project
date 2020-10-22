@@ -4,9 +4,6 @@
     build_path: /home/student/nbs-mentored-project/roles/service-4/files/
     state: present
     tag: latest
-- name: 'tag image and push to nexus (with cleanup)'
-  become_user: root
-  command: /home/student/nbs-mentored-project/roles/service-4/files/push.sh
 - name: 'run service-4 in container'
   docker_container:
     name: service-4

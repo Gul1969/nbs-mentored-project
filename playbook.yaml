@@ -1,9 +1,6 @@
 - hosts: 127.0.0.1
   connection: local
   become: true
-  vars:
-    service_2: ./roles/service-2/files/push.sh
-    service_3_tag: localhost:8082/service-3:'$(git rev-parse --short HEAD)'
   roles:
     - nginx
     - service-1

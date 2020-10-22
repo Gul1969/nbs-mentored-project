@@ -2,14 +2,9 @@
   connection: local
   become: true
   tasks:
-    - name: 'install python'
-      apt:
-        name: python-pip
-        state: latest
-        update_cache: true
     - name: 'install dependencies from .txt file'
       pip:
-        requirements: /home/student/nbs-mentored-project/dependencies/requirements.txt
+        requirements: /home/student/nbs-mentored-project/docker/requirements.txt
     - name: 'install docker dependencies'
       apt:
         pkg:
