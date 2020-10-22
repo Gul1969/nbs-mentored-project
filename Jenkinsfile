@@ -11,5 +11,10 @@ pipeline {
 				sh "./scripts/playbook.sh"
 			}
 		}
+		stage('push to nexus'){
+			steps{
+				sh "./scripts/push.sh"
+			}
+		}
 	}
 }
