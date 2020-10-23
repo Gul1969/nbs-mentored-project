@@ -11,6 +11,11 @@ pipeline {
 				sh "./docker/docker.sh"
 			}
 		}
+		stage('testing coverage'){
+			steps{
+				sh "./scripts/pytest.sh"
+			}
+		}
 		stage('run service playbook roles'){
 			steps{
 				sh "./scripts/playbook.sh"

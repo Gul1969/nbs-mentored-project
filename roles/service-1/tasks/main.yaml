@@ -6,7 +6,7 @@
     tag: latest
 - name: 'run service-1 in container'
   docker_container:
-    name: service-1
+    name: service1
     image: service-1:latest
     ports:
       - 5000:5000
