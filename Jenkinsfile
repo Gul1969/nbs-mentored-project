@@ -11,11 +11,6 @@ pipeline {
 				sh "./docker/docker.sh"
 			}
 		}
-		stage('run nexus in container'){
-			steps{
-				sh "./scripts/nexus.sh"
-			}
-		}
 		stage('run service playbook roles'){
 			steps{
 				sh "./scripts/playbook.sh"
