@@ -5,15 +5,11 @@
     state: present
     tag: latest
 - name: 'run service-1 in container'
-  community.general.docker_container:
+  docker_container:
     name: service-1
     image: service-1:latest
     ports:
       - 5000:5000
-    mounts:
-      - type: bind
-        source: /home/student/nbs-mentored-project/roles/nginx/templates/nginx.conf
-        target: /etc/nginx/nginx.conf
     networks:
       - name: challenge-network
     state: started
