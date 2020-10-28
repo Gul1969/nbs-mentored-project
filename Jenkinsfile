@@ -16,15 +16,5 @@ pipeline {
 				sh "./scripts/pytest.sh"
 			}
 		}
-		stage('run service playbook roles'){
-			steps{
-				sh "./scripts/playbook.sh"
-			}
-		}
-		stage('push to nexus'){
-			steps{
-				sh "./scripts/push.sh"
-			}
-		}
 	}
 }
