@@ -11,7 +11,7 @@ pytest --cov ./application/
 cd /home/student/nbs-mentored-project/roles/service-3/files/
 pip install -r requirements.txt
 pytest --cov ./application/
-cd /hom/student/nbs-mentored-project/roles/service-4/files/
+cd /home/student/nbs-mentored-project/roles/service-4/files/
 pip install -r requirements.txt
 pytest --cov ./application/
 exit
