@@ -1,5 +1,6 @@
 #! /bin/bash
 
+sudo apt remove ansible
 sudo apt-get update
 sudo apt install python3-pip
 sudo apt install python-pip
