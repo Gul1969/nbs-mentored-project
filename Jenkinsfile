@@ -20,6 +20,7 @@ pipeline {
 			steps{
 				sh "./scripts/sonarqube.sh"
 			}
+		}
 		stage('run service playbook roles'){
 			steps{
 				sh "./scripts/playbook.sh"
