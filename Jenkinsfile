@@ -16,5 +16,10 @@ pipeline {
 				sh "./scripts/pytest.sh"
 			}
 		}
+		stage('SAST testing'){
+			steps{
+				sh "./scripts/sonarqube.sh"
+			}
+		}
 	}
 }

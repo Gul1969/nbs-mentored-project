@@ -10,6 +10,10 @@
     image: service-2:latest
     ports:
       - 5001:5001
+    mounts:
+      - type: bind
+        source: /home/student/nbs-mentored-project/roles/nginx/templates/nginx.conf
+        target: /etc/nginx/nginx.conf
     networks:
       - name: challenge-network
     state: started

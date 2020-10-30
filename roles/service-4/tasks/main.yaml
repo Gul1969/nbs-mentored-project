@@ -12,5 +12,9 @@
       - 5003:5003
     networks:
       - name: challenge-network
+    mounts:
+      - type: bind
+        source: /home/student/nbs-mentored-project/roles/nginx/templates/nginx.conf
+        target: /etc/nginx/nginx.conf
     state: started
     
