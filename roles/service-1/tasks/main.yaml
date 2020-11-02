@@ -1,0 +1,19 @@
+- name: 'build docker image'
+  docker_image:
+    name: service-1
+    build_path: /home/student/nbs-mentored-project/roles/service-1/files/
+    state: present
+    tag: latest
+- name: 'run service-1 in container'
+  community.general.docker_container:
+    name: service1
+    image: service-1:latest
+    ports:
+      - 5000:5000
+    networks:
+      - name: challenge-network
+    mounts:
+      - type: bind
+        source: /home/student/nbs-mentored-project/roles/nginx/templates/nginx.conf
+        target: /etc/nginx/nginx.conf
+    state: started

@@ -1,0 +1,9 @@
+- hosts: 127.0.0.1
+  connection: local
+  become: true
+  roles:
+    - nginx
+    - service-1
+    - service-2  
+    - service-3
+    - service-4

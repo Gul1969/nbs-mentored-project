@@ -1,0 +1,22 @@
+- name: 'download and install nginx'
+  apt:
+    name: nginx
+    state: latest
+    update_cache: true
+- name: 'install config file from template'
+  template:
+    src: /home/student/nbs-mentored-project/roles/nginx/templates/nginx.conf
+    dest: /etc/nginx/nginx.conf
+  register: nginx_config
+- name: 'start nginx service'
+  service:
+    name: nginx
+    state: started
+- name: 'create nginx container'
+  docker_container:
+    name: nginx
+    image: nginx:alpine
+    ports:
+      - 81:80
+    networks:
+      - name: challenge-network
