@@ -15,3 +15,4 @@ cd /home/student/nbs-mentored-project/roles/service-4/files/
 pip install -r requirements.txt
 pytest --cov ./application/
 deactivate
+rm -rf venv
