@@ -61,7 +61,7 @@ I managed to successfully find workarounds for ansible. For the most part, I was
 
 ## What didn't go as planned?
 
-There were some very basic issues i had which I could not see without an extra pair of eyes: for example, I was struggling to get NGINX to work until it was pointed out to me that I had mounted everything except my NGINX container. I tend to overthink basic concepts and get frustrated when I cannot work something out. I was not receiving any explicit error messages as well, which I find easier to interpret. I had to ask for help more often than I would have liked, which has knocked my confidence a bit. I was not able to get script functionality to work within the roles so the project is not as tidy as I hoped.
+I encountered some very basic issues which I could not see without an extra pair of eyes: for example, I was struggling to get NGINX to work until it was pointed out to me that I had mounted everything except my NGINX container. I tend to overthink basic concepts and get frustrated when I cannot work something out. I was not receiving any explicit error messages as well, which I find easier to interpret. I had to ask for help more often than I would have liked, which has knocked my confidence a bit. I was not able to get script functionality to work within the roles so the project is not as tidy as I hoped.
 
 ## Possible improvements for future challenges.
 
