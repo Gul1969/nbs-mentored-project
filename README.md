@@ -14,7 +14,7 @@ Sonarqube was scanning 131k lines of code which were not relevant to the project
 ![short summary](/images/sast-summary.png)
 - The two bugs were both related to HTML formatting. This is a very minor issue, but could cause some awkward formatting when the browser loads the page. Specifying the <!DOCTYPE> header above the <html> tag would avoid the browser misunderstanding which version of HTML was being used.
 ![doctype](/images/sast-doctype.png)
-- There were 20 security hotspots in total. This is more concerning with regards to the 4 high priority issues. There is very little CSRF (Cross-Site Request Forgery) protection which could expose the app to an attaked posing as a genuine user to execute requests on their behalf. Protection should be enabled to secure the security of the app.
+- There were 20 security hotspots in total. This is more concerning with regards to the 4 high priority issues. There is very little CSRF (Cross-Site Request Forgery) protection which could expose the app to an attaker posing as a genuine user to execute requests on their behalf. Protection should be enabled to secure the security of the app.
 ![csrf](/images/high-priority.png)
 10 alerts triggered for weak cryptography linked to the use of the random number generator. It has been possible in the past for attackers to be able to guess the next number in line, which has then allowed access to secret data (see CVE-2013-6386, CVE-2008-4102, CVE-2006-3419). Best practice would be to use a recommended random number generator form OWASP/similar.
 ![crypto](/images/weak-crypto.png)
@@ -28,6 +28,11 @@ The last 6 warnings referred to the http protocol used when referring to the loc
 ![csrf-detail](/images/dast-csrf.png)
 - Another low priorty threat is the absense of the X-Content-Type-Options header. This means that there is header explicitly stating that the MIME-types present cannot be changed, opening up the app to the risk of MIME-sniffing from the browser. Security issues arise when the MIME-types represent executables. This can easily be resolved by adding in the relevent header.
 ![x-content](/images/dast-x-content.png)
+- XSS browser protection has not been enabled. This means that the browser will not intervene by halting page loading, if an XSS (cross-site-scripting) attack is detected. Adding X-XSS-Protection: 1; report=<reporting-uri> would allows the browser to block, sanitise and report the attacker. 
+![xss](/images/dast-xss.png)
+- Lastly, there is a medium priority threat posed by the absense of the X-Frame header. If the browser is not explicity told that a page cannot be rendered in a different format (for example, <embed>), then the app is vulnerable to click-jacking attacks by being embedded secretly in other sites. Click-jacking is a common form of attack whereby a user is tricked into clicking links, compromising their details on an unsecure site. X-Frame-Options: DENY should be specified for maximum security.
+![x-frame](/images/dast-x-frame.png)
+
 
  
 
