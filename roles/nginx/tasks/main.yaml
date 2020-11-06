@@ -13,10 +13,14 @@
     name: nginx
     state: started
 - name: 'create nginx container'
-  docker_container:
+  community.general.docker_container:
     name: nginx
     image: nginx:alpine
     ports:
       - 81:80
     networks:
       - name: challenge-network
+    mounts:
+      - type: bind
+        source: /home/student/nbs-mentored-project/roles/nginx/templates/nginx.conf
+        target: /etc/nginx/nginx.conf
