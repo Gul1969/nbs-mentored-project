@@ -2,7 +2,14 @@
  
 You should keep as many metrics as possible and write up reports on them in your README file. These metrics can include.
  
-- Testing Coverage
+### Testing Coverage
+
+- All four services reported 100% coverage. This means that each test that was created was successfully executed with the source code. As a consequence, there is a smaller likelihood of bug remaining in the code. The application is written in python, therefore the pytest module was used with --cov. The hidden .coverage file in each service had to be assigned to the sudo group (to which the Jenkins user belongs); the files also needed executable permissions added. This then allowed the coverage tests to complete succesfully in Jenkins - previously, there had been permission denied errors. 
+Service 1 contained the central app and therefore the most coverage tests. Both python files passed with 100% coverage.
+![s1-pytest](/images/cov-s1.png)
+- All services came with one warning: that flask.json_available has deprecated, and will no longer be used beyond version 2.0.0. This could cause potential issues with the coverage results, and should be upgraded to a more suitable solution to avoid errors. The remaining three services all output similarly as follows (images can be found in the /images directory):
+![s2-pytest](/images/cov-s2.png)
+
 - Deployment Success
 - Build Logs
 ### Security Risks
