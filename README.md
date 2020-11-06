@@ -15,7 +15,8 @@ Service 1 contained the central app and therefore the most coverage tests. Both 
 ![nginx-80](/images/port-80.png)
 ![nginx-5000](/images/port-5000.png)
 
-- Build Logs
+### Build Logs
+- These logs were kept within Jenkins; there were no external databases used. Each build contained each log, which helped identify errors for failed builds. The logs would detail each step as it executed in the console output, including any warnings present in execution. For example, the execution of the ansible playbook which downloaded the dependencies noted the instability issues of ansible installed via pip. The coverage tests would output similarly as shown above, including the formatting of the dashes separating lines. Storing the files within Jenkins allows for portability, as any user can access them easily once logged in with the correct credentials (depending on permissions assigned). It also allows for far more ease of references, rather than having to compare to a separate database. There are no extra files created which could bulk out the project unneccessarily. 
 ### Security Risks
 #### SAST testing
 - At first, when I completed my SAST testing, I did not remove my venv at the end of the coverage testing. Therefore my output was as follows:
@@ -61,7 +62,7 @@ I managed to successfully find workarounds for ansible. For the most part, I was
 
 ## What didn't go as planned?
 
-I encountered some very basic issues which I could not see without an extra pair of eyes: for example, I was struggling to get NGINX to work until it was pointed out to me that I had mounted everything except my NGINX container. I tend to overthink basic concepts and get frustrated when I cannot work something out. I was not receiving any explicit error messages as well, which I find easier to interpret. I had to ask for help more often than I would have liked, which has knocked my confidence a bit. I was not able to get script functionality to work within the roles so the project is not as tidy as I hoped.
+I encountered some very basic issues which I could not see without an extra pair of eyes: for example, I was struggling to get NGINX to work until it was pointed out to me that I had mounted everything except my NGINX container. I tend to overthink basic concepts and get frustrated when I cannot work something out. I was not receiving any explicit error messages as well, which I find easier to interpret. I had to ask for help more often than I would have liked, which has knocked my confidence a bit. I was not able to get script functionality to work within the roles so the project is not as tidy as I hoped. I could not get artefact scanning to run successfully. I have however kept all additional files for documentation purposes.
 
 ## Possible improvements for future challenges.
 
@@ -69,4 +70,5 @@ I encountered some very basic issues which I could not see without an extra pair
 - To be able to get SAST testing running from the command line, ratehr than form the Jenkins plugin. This would be another dependency to install - however, it would saving having three separate jobs as a step could be included in the pipeline rather than having to create a spceific freestyle job. 
 - To have all of my scripts running through ansible, instead of a separate directory
 - To automate DAST testing in Jenkins
+- To use a different artefact scanner which works with Python
   
