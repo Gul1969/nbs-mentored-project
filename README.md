@@ -1,16 +1,20 @@
 # Mentored Project
- 
-You should keep as many metrics as possible and write up reports on them in your README file. These metrics can include.
- 
+## Build report
 ### Testing Coverage
-
 - All four services reported 100% coverage. This means that each test that was created was successfully executed with the source code. As a consequence, there is a smaller likelihood of bug remaining in the code. The application is written in python, therefore the pytest module was used with --cov. The hidden .coverage file in each service had to be assigned to the sudo group (to which the Jenkins user belongs); the files also needed executable permissions added. This then allowed the coverage tests to complete succesfully in Jenkins - previously, there had been permission denied errors. 
 Service 1 contained the central app and therefore the most coverage tests. Both python files passed with 100% coverage.
 ![s1-pytest](/images/cov-s1.png)
 - All services came with one warning: that flask.json_available has deprecated, and will no longer be used beyond version 2.0.0. This could cause potential issues with the coverage results, and should be upgraded to a more suitable solution to avoid errors. The remaining three services all output similarly as follows (images can be found in the /images directory):
 ![s2-pytest](/images/cov-s2.png)
+### Deployment Success
+- As shown below, I have three successful Jenkins jobs running. I would have like to have condensed this into just the one; this is one of the goals for next time stated below. However, there are some benefits to running the SAST testing and artefact scanning as a separate Jenkins freestyle job. There are less dependencies to download, as there is no manual installation of Sonarqube (which also involves modifying the PATH variable, which can easily go wrong) and OWASP. This results in a shorter build time the first time the project is run. It is also easier to isolate in the development stages, as the job is completely separate and build triggers can be modified for any consequent job. 
+![jenkins](/images/jenkins-success.png)
+- I have successfully versioned the images pushed to Nexus. I used the (git rev-parse --short HEAD) tag as it required less configuration than the BUILD_NUMBER variable. These tags can also be easily cross-referenced with GitHub to identify each commit, which is useful when there are a large amount of images in the artefact repository. The relevant image can be found easily from the commit message, to ensure that the correct version is pulled. The latest image is always at the top of the list for ease of navigation.
+![nexus](/images/nexus.png)
+- The appplication is successfully running via an NGINX reverse proxy. The app loads on both ports 80 and 5000. A reverse proxy is beneficial for security reasons: the 'true' port upon whicht he application runs is masked, preventing any potential attacked from being able to target a specific port on a host machine. This is the most simple use of NGINX possible (the nginx.conf file contains only the listen and location lines), but it certainly proves effective. The below screenshots also show the application running, both in its landing state and after interaction:
+![nginx-80](/images/port-80.png)
+![nginx-5000](/images/port-5000.png)
 
-- Deployment Success
 - Build Logs
 ### Security Risks
 #### SAST testing
