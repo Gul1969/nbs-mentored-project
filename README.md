@@ -5,9 +5,32 @@ You should keep as many metrics as possible and write up reports on them in your
 - Testing Coverage
 - Deployment Success
 - Build Logs
-- Security Risks
+### Security Risks
+#### SAST testing
+- At first, when I completed my SAST testing, I did not remove my venv at the end of the coverage testing. Therefore my output was as follows:
+![42 bugs](/images/venv-bugs.png)
+Sonarqube was scanning 131k lines of code which were not relevant to the project. I added a line to my pytest.sh scrupt to remove the venv once coverage testing had completed, and the result was far cleaner:
+![2 bugs](/images/sast-overview.png)
+![short summary](/images/sast-summary.png)
+- The two bugs were both related to HTML formatting. This is a very minor issue, but could cause some awkward formatting when the browser loads the page. Specifying the <!DOCTYPE> header above the <html> tag would avoid the browser misunderstanding which version of HTML was being used.
+![doctype](/images/sast-doctype.png)
+- There were 20 security hotspots in total. This is more concerning with regards to the 4 high priority issues. There is very little CSRF (Cross-Site Request Forgery) protection which could expose the app to an attaked posing as a genuine user to execute requests on their behalf. Protection should be enabled to secure the security of the app.
+![csrf](/images/high-priority.png)
+10 alerts triggered for weak cryptography linked to the use of the random number generator. It has been possible in the past for attackers to be able to guess the next number in line, which has then allowed access to secret data (see CVE-2013-6386, CVE-2008-4102, CVE-2006-3419). Best practice would be to use a recommended random number generator form OWASP/similar.
+![crypto](/images/weak-crypto.png)
+The last 6 warnings referred to the http protocol used when referring to the localhost addresses. If the app were live, it would be far safer to use the https protocol.
+![http-risk](/images/http-insecure-sast.png)
+#### DAST testing
+- The overview below highlights multiple areas in which the app has vulnerabilities, with low and medium risks associated. Though there are only 4 alerts, each alert triggers multiple times, which indicates that there are multiple areas of code which have duplicated issues.
+![dast overview](/images/dast-overview.png)
+- We can see that the ZAP attack was able to target the app due to the lack of CSRF token mentioned above (interestingly, this alerts 8 times instead of the 4 seen in the SAST testing). Though this is a low priority issue, the recommended action is to use a Request-Verification token to prevent the application from trusting any user immediately upon first verification:
+![csrf-overview](/images/dast-csrf-detail.png)
+![csrf-detail](/images/dast-csrf.png)
+- Another low priorty threat is the absense of the X-Content-Type-Options header. This means that there is header explicitly stating that the MIME-types present cannot be changed, opening up the app to the risk of MIME-sniffing from the browser. Security issues arise when the MIME-types represent executables. This can easily be resolved by adding in the relevent header.
+![x-content](/images/dast-x-content.png)
+
  
- 
+
 ## Why are we doing this?
 
 We are using this challenge to consolidate our learning from the four week academy. We need to be able to combine our understanding of each invididual program, in order for us to be able to get them working together in one app. We need to identify which pieces of software to use where for maximum portability and efficiency, whilst being mindful of the restraints of our virtual machines. Putting our knowledge into practice helps cement our learning, as we need to be able to understand each concept to be able to build it form the ground up. 
